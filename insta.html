@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Instagramm</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      text-align: center;
+      color: white;
+      background: linear-gradient(135deg, #000428, #004e92);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+      position: relative;
+    }
+
+    /* Sfondo con scritta ripetuta */
+    body::before {
+      content: "Fermi Future Fermi Future Fermi Future Fermi Future ";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 200%;
+      height: 200%;
+      font-size: 80px;
+      font-weight: bold;
+      color: rgba(255, 255, 255, 0.05);
+      transform: rotate(-30deg);
+      white-space: pre;
+      line-height: 150px;
+      animation: moveBg 30s linear infinite;
+    }
+
+    @keyframes moveBg {
+      from { transform: rotate(-30deg) translateX(0); }
+      to { transform: rotate(-30deg) translateX(-50%); }
+    }
+
+    h1 {
+      font-size: 40px;
+      margin-bottom: 40px;
+      z-index: 1;
+      text-shadow: 0 0 10px #000;
+    }
+
+    .btn {
+      display: inline-block;
+      margin: 15px;
+      padding: 15px 25px;
+      background: #E4405F; /* colore Instagram */
+      color: white;
+      text-decoration: none;
+      border-radius: 50px;
+      font-size: 18px;
+      width: 220px;
+      transition: 0.3s;
+      z-index: 1;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+    }
+
+    .btn:hover {
+      background: #c13584;
+      transform: scale(1.05);
+    }
+  </style>
+</head>
+<body>
+  <h1>Instagramm</h1>
+
+  <a href="#" onclick="openInsta('profilo1')" class="btn">Instagram 1</a>
+  <a href="#" onclick="openInsta('profilo2')" class="btn">Instagram 2</a>
+  <a href="#" onclick="openInsta('profilo3')" class="btn">Instagram 3</a>
+  <a href="#" onclick="openInsta('profilo4')" class="btn">Instagram 4</a>
+  <a href="#" onclick="openInsta('profilo5')" class="btn">Instagram 5</a>
+
+  <script>
+    function openInsta(username) {
+      const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+      if (isMobile) {
+        // Prova ad aprire l'app
+        window.location.href = "instagram://user?username=" + username;
+        // Se fallisce, dopo 1s va sul web
+        setTimeout(() => {
+          window.location.href = "https://instagram.com/" + username;
+        }, 1000);
+      } else {
+        // Su PC → sempre versione web
+        window.location.href = "https://instagram.com/" + username;
+      }
+    }
+  </script>
+
+</body>
+</html>
